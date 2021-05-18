@@ -1,9 +1,11 @@
 import react,{useState,useContext,createContext, useEffects} from 'react';
-import {useHistory} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
 import UserContext from "../api/context";
+
 
 const Navbar = () =>{
    const { userData, setUserData } = useContext(UserContext);
+   
 
    const logout = () => {
       setUserData({
@@ -12,59 +14,68 @@ const Navbar = () =>{
       })
       localStorage.setItem("auth-token","");
       };
-      
     return (
-
+    
+      
    
         <div>
         <body>
-            {/* <div classNameName="loader_bg">
-         <div classNameName="loader"><img src="assets/images/loading.gif" alt="#" /></div>
-        </div> */}
-      <header>        
-         <div className="container">
-            <div className="row">
-               <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                  <div className="full">
-                     <div className="center-desk">
-                        <div className="logo"> <a href="/"><img src="assets/images/logo.jfif" alt="logo"/></a> </div>
-                     </div>
-                  </div>
-               </div>
-         
-               <div className="col-xl-7 col-lg-7 col-md-9 col-sm-9">
-                  <div className="menu-area">
-                     <div className="limit-box">
-                        <nav className="main-menu">
-                           <ul className="menu-area-main">
-                              <li className="active"> <a href="/">Home</a> </li>
-                              <li> <a href="About">About</a> </li>
-                             {userData.user ?(
-                                <div>
-                                  <li> <a href="Feed">Browse</a> </li>
-                                  <li> <a href="Post"> Post</a> </li>
-                                  <li> <a href="Contact">Contact</a> </li>
-                                  </div>
-                             ):( <li> <a href="Contact">Contact</a> </li>) }
-                            
-
-                              {userData.user ? (
-         <button className="btn btn-danger" onClick={logout}>Logout</button>
-         
-         ) :( <button className="btn btn-danger" onClick={logout}>Login</button> )} 
-                              
-                           </ul>
-                        </nav>
-                     </div>
-                  </div>
-               </div>
-            
-            </div>
-         </div>     
-      </header>
+        
       
+
+   <nav class="navbar sticky-top navbar-expand-lg nav" style={{backgroundColor: "white"}}>
+    <div class="container">
+    <div className="center-desk">
+         <div className="logo"> <a href="/"><img src="assets/images/logo.jfif" alt="logo"/></a> </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <i class="fa fa-bars"></i>
+  </button>
+
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item active space">
+          <a href="/">Home </a> 
+          </li>
+          <li class="nav-item space">
+           <a href="About">About </a> 
+            </li>
+            <li class="nav-item space">
+             <a href="Contact">Contact </a> 
+              </li>
+             
+             {userData.user ?(
+                 <li class="nav-item space">
+                     <li> <a href="Feed">Browse </a> </li>
+                     </li>
+              ):(<div></div>) }
+               {userData.user ?(
+             
+                 <li class="nav-item space">
+                       <li> <a href="Post">Post </a> </li>
+                     </li>
+                     
+              ):(<div></div>) }
+               
+              
+           {userData.user ?(
+                 <li class="nav-item space">
+                    <li> <a href="Profile">Profile </a> </li>
+               </li>
+              ):(<div></div>) }
+                     
+         {userData.user ? (
+         <button className="btn btn-danger logout"onClick={logout}>Logout</button>
+         
+         ) :(<div></div> )} 
+        </ul>
+      </div>
+    </div>
+  </nav>
+     
       
         </body>
+
         </div>
         
     );

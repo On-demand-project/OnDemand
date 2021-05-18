@@ -51,7 +51,7 @@ function App() {
   return (
     <div>
       
-      
+      <div className="se-pre-con"></div>
   
     <BrowserRouter>
     <UserContext.Provider value={{ userData, setUserData }}>

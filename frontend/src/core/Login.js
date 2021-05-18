@@ -46,10 +46,10 @@ const Login=()=>{
  
   <section class="slider_section">
          <div id="main_slider" class="carousel slide banner-main" data-ride="carousel">
-         {/* {userData.user ? (
-<button className="btn btn-danger" onClick={logout}>Logout</button>
+          {userData.user ? (
+<div></div>
 
-) : ( */}
+) : ( 
             <div class="carousel-inner" style={{backgroundimage: 'assets/images/banner2.jpg'  }}>
                <div class="carousel-item active" >
                   
@@ -77,7 +77,7 @@ const Login=()=>{
                   
                </div>
                </div>
-{/* )} */}
+ )} 
                </div>
                
 

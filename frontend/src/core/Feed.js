@@ -57,10 +57,10 @@ const Feed=()=>{
                   <div class="product-box">
                      <i><img src="assets/icon/p1.jpg"/></i>
                      <br/>
-                     <h2>{val.name} </h2>
-                     <span>{val.work}</span>
+                     <h2>{val.work.toUpperCase()} </h2>
                      <h3>$ {val.price} </h3>
-                    
+                     <span>{val.name}</span>
+                     <br/>
                      <span>Phone: {val.phone} </span>
                      <br/>
                      <span>Date: {val.date}  </span>

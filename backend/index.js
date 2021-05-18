@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 
-
-mongoose.connect(process.env.MONGODB_TOKEN, {
+const DBName = `ondemand`;
+mongoose.connect(`mongodb+srv://user:1234@cluster0.tr3cr.mongodb.net/ondemand?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
