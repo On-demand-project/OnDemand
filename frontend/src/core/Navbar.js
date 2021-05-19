@@ -1,16 +1,49 @@
 import react,{useState,useContext,createContext, useEffects} from 'react';
 import {Redirect, useHistory} from 'react-router-dom'
 import UserContext from "../api/context";
-
+import axios from 'axios'
 
 const Navbar = () =>{
+  var res=false;
    const { userData, setUserData } = useContext(UserContext);
-   
+   console.log(userData.user)
+
+  try{
+    if(userData.user.type === 'Service Provider')
+      res=true;
+    // else
+    //   res=false;
+  }
+  catch(err){
+    console.log(err);
+  }
+
+   if(!res){
+    console.log(userData)
+    const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+    .then((res)=>{
+      console.log(res.data);
+      if(res.length===0){
+        console.log("No notification")
+      }
+      else{
+        res.data.forEach(ele => {
+          console.log(ele + "Will be contacting you shortly")
+        });
+       
+      }
+    })
+    .catch(e=>console.log(e));
+  }
+
+
+
+
 
    const logout = () => {
       setUserData({
       token: undefined,
-      user: undefined
+      user: undefined,
       })
       localStorage.setItem("auth-token","");
       };
@@ -43,13 +76,13 @@ const Navbar = () =>{
             <li class="nav-item space">
              <a href="Contact">Contact </a> 
               </li>
-             
-             {userData.user ?(
+              {/* .type == 'Service Provider' */}
+             {(res) ?(
                  <li class="nav-item space">
                      <li> <a href="Feed">Browse </a> </li>
                      </li>
               ):(<div></div>) }
-               {userData.user ?(
+               {!res ?(
              
                  <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>

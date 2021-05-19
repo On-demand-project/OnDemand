@@ -55,6 +55,56 @@ exports.deleteserv = async (req,res) => {
 }
 
 
+
+exports.notify = async (req,res) =>{
+  try{
+      console.log(req.body.UserName)
+   
+      User.update({UserName:req.body.UserName},{$addToSet:{notification : req.body.curuser.UserName}})
+      .exec((err,data)=>{
+          console.log(err); 
+          if(err || !data){
+              res.status(400).json({
+                  err:"Not found", 
+              })
+          }
+          console.log(data)
+          res.json(data);
+      })
+
+
+    
+      
+      
+  }
+  catch(err){
+      console.log(err);
+  }
+}
+
+
+exports.checknotf = async (req,res) =>{
+  try{
+      console.log(req.body);
+      User.find({UserName:req.body.UserName})
+      .exec((err,data)=>{
+          console.log(err); 
+          if(err || !data){
+              res.status(400).json({
+                  err:"Not found", 
+              })
+          }
+          console.log(data)
+          res.json(data);
+      })
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+
+
 exports.register = async (req, res) => {
     try {
       let { email, password, passwordCheck, UserName , type } = req.body;

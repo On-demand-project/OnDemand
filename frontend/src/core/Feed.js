@@ -1,8 +1,10 @@
-import react,{Component,useEffect,useState} from 'react'
+import react,{Component,useEffect,useState,useContext} from 'react'
 import axios from "axios";
+import UserContext from '../api/context'
 
 const Feed=()=>{
-   
+   const { userData, setUserData } = useContext(UserContext);
+
    const [providerList,setproviderList]=useState([]);
 
    useEffect(()=>{
@@ -11,6 +13,18 @@ const Feed=()=>{
       });
    },[])
 
+   const selected=(event)=>{
+      console.log(event.target.value);
+      const name=event.target.value;
+      const data={
+         UserName:name,
+         curuser : userData.user
+      }
+      console.log(data);
+      const res = axios.post('http://localhost:8000/home/notify',data)
+      .then((res)=>console.log(res))
+      .catch(e=>console.log(e));
+   }
 
       return (
 <div>
@@ -71,7 +85,7 @@ const Feed=()=>{
                      <br/>
                      <span>City: {val.city} </span>
                      <br/>
-                     <button className="btn btn-primary">Book</button>
+                     <button className="btn btn-primary" value={val.name} onClick={selected}>Book</button>
 
                   </div>
                </div>

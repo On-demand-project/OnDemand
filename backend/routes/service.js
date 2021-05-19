@@ -11,7 +11,9 @@ const{
     readserv,
     deleteserv,
     register,
-    login
+    login,
+    notify,
+    checknotf,
 } = require('../controllers/service'); 
 
 router.get('/service',readserv);
@@ -19,7 +21,9 @@ router.post('/post',postserv);
 router.delete('/:sid',deleteserv);
 router.post("/register", register);
 router.post("/login", login);
- 
+router.post("/notify",notify); 
+router.post("/checknotf",checknotf);
+
 
 router.post("/tokenIsValid", async (req, res) => {
     try {
@@ -50,6 +54,7 @@ router.post("/tokenIsValid", async (req, res) => {
     res.json({
       UserName: user.UserName,
       id: user._id,
+      type: user.type,
     });
   });
 

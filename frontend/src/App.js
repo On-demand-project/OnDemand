@@ -19,7 +19,8 @@ function App() {
   
   const [ userData, setUserData] = useState({
     token: undefined,
-    user: undefined
+    user: undefined,
+ 
   });
   //const { useData, setUserData } = useContext(UserContext);
   console.log(userData);
@@ -41,13 +42,17 @@ function App() {
         setUserData({
           token,
           user: userRes.data,
+         
         });
-      }
+        // console.log(userRes.data.type);
+      } 
     }
 
     checkLoggedIn();
   }, []);
 
+
+  
   return (
     <div>
       

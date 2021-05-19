@@ -31,6 +31,13 @@ const Login=()=>{
             //err.response.data.msg && setError(err.response.data.msg)
         }
         
+
+        if(userData.user){
+          console.log(userData)
+          const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+          .then((res)=>console.log(res))
+          .catch(e=>console.log(e));
+        }
        
     };
 
