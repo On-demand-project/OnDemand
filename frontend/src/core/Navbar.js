@@ -5,29 +5,31 @@ import axios from 'axios'
 
 const Navbar = () =>{
   var res=false;
+  var res1=false;
    const { userData, setUserData } = useContext(UserContext);
    console.log(userData.user)
 
   try{
     if(userData.user.type === 'Service Provider')
       res=true;
-    // else
-    //   res=false;
+    if(userData.user.type === 'User')
+      res1=true;
+    
   }
   catch(err){
     console.log(err);
   }
 
    if(!res){
-    console.log(userData)
+    // console.log(userData)
     const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
     .then((res)=>{
-      console.log(res.data);
+      console.log(res.data[0].notification);
       if(res.length===0){
         console.log("No notification")
       }
       else{
-        res.data.forEach(ele => {
+        res.data[0].notification.forEach(ele => {
           console.log(ele + "Will be contacting you shortly")
         });
        
@@ -82,7 +84,7 @@ const Navbar = () =>{
                      <li> <a href="Feed">Browse </a> </li>
                      </li>
               ):(<div></div>) }
-               {!res ?(
+               {res1 ?(
              
                  <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
