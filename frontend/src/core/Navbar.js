@@ -4,18 +4,21 @@ import UserContext from "../api/context";
 import axios from 'axios'
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-
+var arr=[];
 const Navbar = () =>{
+  // const [ar,setar] = useState({});
   const [popoverOpen, setPopoverOpen] = useState(false);
   const toggle = () => setPopoverOpen(!popoverOpen);
 
   const [notOpen, setnotOpen] = useState(false);
   const tog = () => setnotOpen(!notOpen);
 
+
   var res=false;
   var res1=false;
+  
    const { userData, setUserData } = useContext(UserContext);
-   console.log(userData.user)
+   //console.log(userData.user)
 
   try{
     if(userData.user.type === 'Service provider')
@@ -30,17 +33,16 @@ const Navbar = () =>{
 
    if(!res){
     // console.log(userData)
-    const res = axios.get('http://localhost:8000/home/checknotf',userData.user)
+    const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
     .then((res)=>{
       console.log(res.data[0].notification);
       if(res.length===0){
         console.log("No notification")
       }
       else{
-        res.data[0].notification.forEach(ele => {
-          console.log(ele + "Will be contacting you shortly")
-        });
-       
+        // arr=res.data[0].notification[0];
+       arr=[... res.data[0].notification];
+      //  setar(arr);
       }
     })
     .catch(e=>console.log(e));
@@ -87,12 +89,12 @@ const Navbar = () =>{
              <a href="Contact">Contact </a> 
               </li>
               {/* .type == 'Service Provider' */}
-             {(res1) ?(
+             {(res) ?(
                  <li class="nav-item space">
                      <li> <a href="Feed">Browse </a> </li>
                      </li>
               ):(<div></div>) }
-               {res ?(
+               {res1 ?(
              
                  <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
@@ -124,7 +126,7 @@ const Navbar = () =>{
           </Button>
           <Popover placement="bottom" isOpen={notOpen} target="not" toggle={tog}>
             <PopoverHeader>Notifications</PopoverHeader>
-            <PopoverBody> {} </PopoverBody>
+            <PopoverBody> {`${arr[0]} Will be contacting you soon !`} </PopoverBody>
           </Popover>
         </div>
          

@@ -85,7 +85,7 @@ exports.notify = async (req,res) =>{
 
 exports.checknotf = async (req,res) =>{
   try{
-      console.log(req.body);
+      console.log(req.body.UserName);
       User.find({UserName:req.body.UserName})
       .exec((err,data)=>{
           console.log(err); 
