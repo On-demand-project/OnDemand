@@ -10,6 +10,7 @@ import About from "./core/About";
 import Footer from "./core/Footer";
 import Feed from './core/Feed';
 import Post from './core/Postpage'
+import Profile from './core/Profile'
 import {useState,useEffect} from 'react'
 import UserContext from './api/context'
 import axios from 'axios'
@@ -69,6 +70,7 @@ function App() {
         <Route path="/About" exact component={About} />
         <Route path="/Contact" exact component={ Contact} /> 
         <Route path="/Post" exact component={Post} />
+        <Route path="/Profile" exact component={Profile} />
         {/* <Route path="/post" exact component={Postpage} /> */}
         {/* <Route path="/create/product" exact component={AddProduct} />
         <Route path="/create/uploadproduct" exact component={Upload} /> */}

@@ -67,13 +67,13 @@ const Signup=()=>{
                     <input type="password" onChange={e => setPasswordCheck(e.target.value)}  class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" />
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" onClick ={e => setType(e.target.name)} type="radio" val="User" name="User" id="flexRadioDefault1" checked />
+                  <input class="form-check-input" onClick ={e => setType(e.target.value)} type="radio" value="User" name="flexRadioDefault" id="flexRadioDefault1" />
                   <label class="form-check-label" for="flexRadioDefault1">
                    User 
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" onClick ={e => setType(e.target.name)} type="radio" val="Service provider" name="Service Provider" id="flexRadioDefault2"/ >
+                  <input class="form-check-input" onClick ={e => setType(e.target.value)} type="radio" value="Service provider" name="flexRadioDefault" id="flexRadioDefault2"/ >
                   <label class="form-check-label" for="flexRadioDefault2">
                     Service provider
                   </label>

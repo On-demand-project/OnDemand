@@ -2,61 +2,47 @@ import react from 'react'
 
 const Footer=()=>{
 return(<footr>
-         <div class="footer">
+         <div className="footer">
             <div class="container">
-               <div class="row">
-                  <div class="col-md-6 offset-md-3">
-                     <ul class="sociel">
-                         <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                         <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                         <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                         <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                     </ul>
-                  </div>
-            </div>
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>conatct us</h3>
-                     <span>123 Second Street Fifth Avenue,<br/>
-                       Manhattan, New York
-                        +987 654 3210</span>
+                     <span>Nitte Meenakshi Institute of Technology<br/>
+                       Bangalore,India,560064 <br/>
+                        +91 8277113344<br/>+91 7899447930</span>
                   </div>
                </div>
                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="contact">
                      <h3>ADDITIONAL LINKS</h3>
                      <ul class="lik">
-                         <li> <a href="#">About us</a></li>
+                         <li> <a href="About">About us</a></li>
                          <li> <a href="#">Terms and conditions</a></li>
                          <li> <a href="#">Privacy policy</a></li>
-                         <li> <a href="#">News</a></li>
-                          <li> <a href="#">Contact us</a></li>
+                          <li> <a href="Contact">Contact us</a></li>
                      </ul>
                   </div>
                </div>
-                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="contact">
-                     <h3>service</h3>
-                      <ul class="lik">
-                    <li> <a href="#"> Data recovery</a></li>
-                         <li> <a href="#">Computer repair</a></li>
-                         <li> <a href="#">Mobile service</a></li>
-                         <li> <a href="#">Network solutions</a></li>
-                          <li> <a href="#">Technical support</a></li>
-                          </ul>
-                  </div>
+               <div className="count">
+         <div className="counter-container">
+         <i className="fa fa-twitter fa-3x"></i>
+               <div className="counter" data-target="12000"></div>
+                <span>Twitter . </span>
                </div>
-                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="contact">
-                     <h3>IT NEXT THEME</h3>
-                     <span>Tincidunt elit magnis <br/>
-                     nulla facilisis. Dolor <br/>
-                  sagittis maecenas. <br/>
-               Sapien nunc amet <br/>
-            ultrices, </span>
-                  </div>
-               </div>
+
+             <div className="counter-container">
+              <i className="fa fa-youtube fa-3x"></i>
+              <div className="counter" data-target="5000"></div>
+                 <span>YouTube . </span>
+              </div>
+
+            <div className="counter-container">
+            <i className="fa fa-facebook fa-3x"></i>
+               <div className="counter" data-target="7500"></div>
+               <span>Facebook </span>
+            </div>
+            </div>
             </div>
          </div>
             <div class="copyright">

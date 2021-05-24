@@ -2,17 +2,25 @@ import react,{useState,useContext,createContext, useEffects} from 'react';
 import {Redirect, useHistory} from 'react-router-dom'
 import UserContext from "../api/context";
 import axios from 'axios'
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+
 
 const Navbar = () =>{
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const toggle = () => setPopoverOpen(!popoverOpen);
+
+  const [notOpen, setnotOpen] = useState(false);
+  const tog = () => setnotOpen(!notOpen);
+
   var res=false;
   var res1=false;
    const { userData, setUserData } = useContext(UserContext);
    console.log(userData.user)
 
   try{
-    if(userData.user.type === 'Service Provider')
+    if(userData.user.type === 'Service provider')
       res=true;
-    if(userData.user.type === 'User')
+     if(userData.user.type === 'User')
       res1=true;
     
   }
@@ -22,7 +30,7 @@ const Navbar = () =>{
 
    if(!res){
     // console.log(userData)
-    const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+    const res = axios.get('http://localhost:8000/home/checknotf',userData.user)
     .then((res)=>{
       console.log(res.data[0].notification);
       if(res.length===0){
@@ -79,12 +87,12 @@ const Navbar = () =>{
              <a href="Contact">Contact </a> 
               </li>
               {/* .type == 'Service Provider' */}
-             {(res) ?(
+             {(res1) ?(
                  <li class="nav-item space">
                      <li> <a href="Feed">Browse </a> </li>
                      </li>
               ):(<div></div>) }
-               {res1 ?(
+               {res ?(
              
                  <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
@@ -93,16 +101,36 @@ const Navbar = () =>{
               ):(<div></div>) }
                
               
-           {userData.user ?(
-                 <li class="nav-item space">
-                    <li> <a href="Profile">Profile </a> </li>
-               </li>
-              ):(<div></div>) }
+          
                      
          {userData.user ? (
          <button className="btn btn-danger logout"onClick={logout}>Logout</button>
          
-         ) :(<div></div> )} 
+         ) :(<div></div> )}
+
+
+         {userData.user ? (
+          <div>
+          <Button className="btn btn-light user" id="Popover1" type="button">
+          <i className="fa fa-user fa-2x"></i>
+          </Button>
+          <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle}>
+            <PopoverHeader>{userData.user.type}</PopoverHeader>
+            <PopoverBody>Welcome {userData.user.UserName} ! </PopoverBody>
+          </Popover>
+        
+          <Button className="btn btn-light" id="not" type="button">
+          <i class="fa fa-envelope fa-2x"></i>
+          </Button>
+          <Popover placement="bottom" isOpen={notOpen} target="not" toggle={tog}>
+            <PopoverHeader>Notifications</PopoverHeader>
+            <PopoverBody> {} </PopoverBody>
+          </Popover>
+        </div>
+         
+         ) :(<div></div> )}  
+
+      
         </ul>
       </div>
     </div>

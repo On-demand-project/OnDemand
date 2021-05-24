@@ -105,6 +105,7 @@ exports.checknotf = async (req,res) =>{
 
 
 
+
 exports.register = async (req, res) => {
     try {
       let { email, password, passwordCheck, UserName , type } = req.body;

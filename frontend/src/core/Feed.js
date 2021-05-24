@@ -26,6 +26,8 @@ const Feed=()=>{
       .catch(e=>console.log(e));
    }
 
+   
+
       return (
 <div>
  <div class="brand_color">
@@ -43,8 +45,7 @@ const Feed=()=>{
 
 
 
-    <div> </div>
-
+  
 
 {/* <div  class="filter">
 <Filter />
@@ -61,7 +62,8 @@ const Feed=()=>{
             </div>
          </div>
       </div>
-          
+
+     
       {providerList.map((val,key)=>{
          return(
             <div class="product-bg-white">
@@ -86,7 +88,9 @@ const Feed=()=>{
                      <span>City: {val.city} </span>
                      <br/>
                      <button className="btn btn-primary" value={val.name} onClick={selected}>Book</button>
-
+                     
+            
+           
                   </div>
                </div>
                </div>
