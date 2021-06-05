@@ -68,7 +68,7 @@ exports.notify = async (req,res) =>{
                   err:"Not found", 
               })
           }
-          console.log(data)
+          // console.log(data)
           res.json(data);
       })
 
@@ -85,7 +85,7 @@ exports.notify = async (req,res) =>{
 
 exports.checknotf = async (req,res) =>{
   try{
-      console.log(req.body.UserName);
+      // console.log(req.body.UserName);
       User.find({UserName:req.body.UserName})
       .exec((err,data)=>{
           console.log(err); 
@@ -94,7 +94,7 @@ exports.checknotf = async (req,res) =>{
                   err:"Not found", 
               })
           }
-          console.log(data)
+          // console.log(data)
           res.json(data);
       })
   }

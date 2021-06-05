@@ -95,11 +95,16 @@ const Navbar = () =>{
                      </li>
               ):(<div></div>) }
                {res1 ?(
+                 <div>
              
                  <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
                      </li>
                      
+                     <li class="nav-item space">
+                       <li> <a href="Chat">Text </a> </li>
+                     </li>
+                     </div>
               ):(<div></div>) }
                
               

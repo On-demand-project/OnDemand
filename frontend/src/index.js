@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 // import './styles.css';
+// import socketIOClient from "socket.io-client";
+// const ENDPOINT="http://127.0.0.1:8000";
 
+// window.socket=socketIOClient(ENDPOINT)
 
 ReactDOM.render(
   <React.StrictMode>

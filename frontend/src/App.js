@@ -14,7 +14,7 @@ import Profile from './core/Profile'
 import {useState,useEffect} from 'react'
 import UserContext from './api/context'
 import axios from 'axios'
-
+import Chat from "./core/Chat"
 function App() {
 
   
@@ -66,7 +66,7 @@ function App() {
       <Route path="/" exact component={ Login} /> 
       <Route path="/Feed" exact component={ Feed} /> 
        <Route path="/Signup" exact component={ Signup} /> 
-       
+       <Route path="/Chat" exact component={Chat}/>
         <Route path="/About" exact component={About} />
         <Route path="/Contact" exact component={ Contact} /> 
         <Route path="/Post" exact component={Post} />
