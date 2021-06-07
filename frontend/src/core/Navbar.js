@@ -95,10 +95,14 @@ const Navbar = () =>{
                      </li>
               ):(<div></div>) }
                {res1 ?(
-             
-                 <li class="nav-item space">
+                 <div>
+                      <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
-                     </li>
+                      </li>
+                      <li class="nav-item space">
+                       <li> <a href="Chat">Text </a> </li>
+                      </li>
+                  </div>
                      
               ):(<div></div>) }
                

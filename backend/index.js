@@ -9,6 +9,13 @@ const service = require('./routes/service');
 
 const app = express();
 const PORT = 8000;
+const http = require('http').createServer(app)
+const io = require('socket.io')(http,{
+    cors: {
+      origin: '*',
+    }
+  });
+      
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -33,7 +40,13 @@ app.use(logger);
 
 app.use('/home', service);
 
+io.on('connection', socket => {
+    socket.on('message', ({ name, message }) => {
+      io.emit('message', { name, message })
+    })
+  })
 
-app.listen(process.env.PORT || PORT, () =>
+
+http.listen(process.env.PORT || PORT, () =>
     console.log(`Server is running on port ${PORT}`)
 );
