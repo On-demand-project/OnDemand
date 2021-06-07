@@ -1,19 +1,25 @@
 import TextField from "@material-ui/core/TextField"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState,useContext } from "react"
 import io from "socket.io-client"
-
+import UserContext from "./../api/context"
 function Chat() {
-	const [ state, setState ] = useState({ message: "", name: "" })
+	const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
+	const { userData, setUserData } = useContext(UserContext);
 
 	const socketRef = useRef()
 
 	useEffect(
 		() => {
 			socketRef.current = io.connect("http://localhost:8000")
-			socketRef.current.on("message", ({ name, message }) => {
-				setChat([ ...chat, { name, message } ])
+			socketRef.current.on("message", ({ to,from, message }) => {
+				setChat([ ...chat, { to,from, message } ])
 			})
+			// console.log(userData.user.UserName)
+			var data={
+				username:"New"
+			}
+			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()
 		},
 		[ chat ]
@@ -24,17 +30,19 @@ function Chat() {
 	}
 
 	const onMessageSubmit = (e) => {
-		const { name, message } = state
-		socketRef.current.emit("message", { name, message })
+		const {  message } = state
+		const to="newserv";
+		const from="New";
+		socketRef.current.emit("message", { to,from, message })
 		e.preventDefault()
-		setState({ message: "", name })
+		setState({ message: "", to,from })
 	}
 
 	const renderChat = () => {
-		return chat.map(({ name, message }, index) => (
+		return chat.map(({ from, message }, index) => (
 			<div key={index}>
 				<h3>
-					{name}: <span>{message}</span>
+					{from}: <span>{message}</span>
 				</h3>
 			</div>
 		))

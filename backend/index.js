@@ -39,10 +39,16 @@ connection.once('open', () => {
 app.use(logger);
 
 app.use('/home', service);
-
+let users={};
 io.on('connection', socket => {
-    socket.on('message', ({ name, message }) => {
-      io.emit('message', { name, message })
+  console.log("Socket id------>"+socket.id);
+  socket.on('new',(data)=>{
+    users[data.username] =socket.id;
+    console.log(users);
+  })
+    socket.on('message', ({ to,from, message }) => {
+      io.to(users[to]).emit('message', { to,from, message })
+      io.to(users[from]).emit('message', { to,from, message })
     })
   })
 

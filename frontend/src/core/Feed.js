@@ -32,7 +32,7 @@ const Feed=()=>{
 
 
 
-   const [ state, setState ] = useState({ message: "", name: "" })
+   const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
 
 	const socketRef = useRef()
@@ -40,9 +40,13 @@ const Feed=()=>{
 	useEffect(
 		() => {
 			socketRef.current = io.connect("http://localhost:8000")
-			socketRef.current.on("message", ({ name, message }) => {
-				setChat([ ...chat, { name, message } ])
+			socketRef.current.on("message", ({ to,from, message }) => {
+				setChat([ ...chat, { to,from, message } ])
 			})
+         var data={
+				username:"newserv"
+			}
+			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()
 		},
 		[ chat ]
@@ -53,17 +57,19 @@ const Feed=()=>{
 	}
 
 	const onMessageSubmit = (e) => {
-		const { name, message } = state
-		socketRef.current.emit("message", { name, message })
+		const { message } = state
+      const to="New";
+      const from="newserv"
+		socketRef.current.emit("message", { to,from, message })
 		e.preventDefault()
-		setState({ message: "", name })
+		setState({ message: "", to,from })
 	}
 
 	const renderChat = () => {
-		return chat.map(({ name, message }, index) => (
+		return chat.map(({ from, message }, index) => (
 			<div key={index}>
 				<h3>
-					{name}: <span>{message}</span>
+					{from}: <span>{message}</span>
 				</h3>
 			</div>
 		))
