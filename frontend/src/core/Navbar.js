@@ -30,8 +30,8 @@ const Navbar = () =>{
   catch(err){
     console.log(err);
   }
-
-   if(!res){
+  console.log("-------------------------------")
+   if(!res && userData.user){
     // console.log(userData)
     const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
     .then((res)=>{
@@ -40,9 +40,7 @@ const Navbar = () =>{
         console.log("No notification")
       }
       else{
-        // arr=res.data[0].notification[0];
        arr=[... res.data[0].notification];
-      //  setar(arr);
       }
     })
     .catch(e=>console.log(e));

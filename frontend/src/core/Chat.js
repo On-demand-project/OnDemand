@@ -2,28 +2,58 @@ import TextField from "@material-ui/core/TextField"
 import React, { useEffect, useRef, useState,useContext } from "react"
 import io from "socket.io-client"
 import UserContext from "./../api/context"
+import axios from 'axios'
+
 function Chat() {
 	const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
 	const { userData, setUserData } = useContext(UserContext);
-
 	const socketRef = useRef()
-
+	var data;
+	var to1;
+	var to;
+	var from;
+	var user="";
 	useEffect(
 		() => {
-			socketRef.current = io.connect("http://localhost:8000")
-			socketRef.current.on("message", ({ to,from, message }) => {
+
+			if(userData.user){
+				// data=userData.user
+				user=userData.user.UserName
+				const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+				.then((res)=>{
+				  console.log(res.data[0].notification);
+				  if(res.length===0){
+					console.log("No notification")
+				  }
+				  else{
+				    to1=res.data[0].notification[0];
+				  }
+				  
+				})
+				.catch(e=>console.log(e));
+				
+			  }
+			  socketRef.current = io.connect("http://localhost:8000")
+			  socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
 			})
-			// console.log(userData.user.UserName)
 			var data={
-				username:"New"
+				UserName:"New"
 			}
+			// if(userData.user){
+			setState({ ...state, from: user  })
 			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()
+			// }
+
+			
 		},
 		[ chat ]
 	)
+
+
+
 
 	const onTextChange = (e) => {
 		setState({ ...state, [e.target.name]: e.target.value })
@@ -31,8 +61,9 @@ function Chat() {
 
 	const onMessageSubmit = (e) => {
 		const {  message } = state
-		const to="newserv";
-		const from="New";
+		//const to="newserv";
+		console.log(state)
+		const from=state.from;
 		socketRef.current.emit("message", { to,from, message })
 		e.preventDefault()
 		setState({ message: "", to,from })

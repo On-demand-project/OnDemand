@@ -41,13 +41,7 @@ const Login=()=>{
        
     };
 
-    const logout = () => {
-      setUserData({
-      token: undefined,
-      user: undefined
-      })
-      localStorage.setItem("auth-token","");
-      };
+  
       
   return(<div>
  
