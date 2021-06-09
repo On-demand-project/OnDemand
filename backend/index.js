@@ -43,7 +43,7 @@ let users={};
 io.on('connection', socket => {
   console.log("Socket id------>"+socket.id);
   socket.on('new',(data)=>{
-    console.log(data)
+    // console.log(data)
     users[data.UserName] =socket.id;
     console.log(users);
   })

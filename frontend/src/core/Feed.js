@@ -4,9 +4,11 @@ import UserContext from '../api/context'
 import TextField from "@material-ui/core/TextField"
 import io from "socket.io-client"
 
+var name=""
 const Feed=()=>{
    const { userData, setUserData } = useContext(UserContext);
-
+   const [ state, setState ] = useState({ message: "", to: "" ,from:""})
+	const [ chat, setChat ] = useState([])
    const [providerList,setproviderList]=useState([]);
 
    useEffect(()=>{
@@ -17,7 +19,11 @@ const Feed=()=>{
 
    const selected=(event)=>{
       console.log(event.target.value);
-      const name=event.target.value;
+      name=event.target.value;
+      // setState({... state, to:event.target.value})
+      // setState({... state, from:userData.user.UserName})
+      console.log(state);
+     
       const data={
          UserName:name,
          curuser : userData.user
@@ -32,20 +38,19 @@ const Feed=()=>{
 
 
 
-   const [ state, setState ] = useState({ message: "", to: "" ,from:""})
-	const [ chat, setChat ] = useState([])
+   
 
 	const socketRef = useRef()
 
 	useEffect(
 		() => {
+         const data=userData.user;
+         console.log(userData.user);
 			socketRef.current = io.connect("http://localhost:8000")
 			socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
 			})
-         var data={
-				UserName:"newserv"
-			}
+        
 			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()
 		},
@@ -53,13 +58,17 @@ const Feed=()=>{
 	)
 
 	const onTextChange = (e) => {
+      
 		setState({ ...state, [e.target.name]: e.target.value })
 	}
 
 	const onMessageSubmit = (e) => {
 		const { message } = state
-      const to="New";
-      const from="newserv"
+      console.log(name)
+      const to=name
+      const from=userData.user.UserName
+      setState({ ... state, to,from })
+      console.log(state)
 		socketRef.current.emit("message", { to,from, message })
 		e.preventDefault()
 		setState({ message: "", to,from })
@@ -159,7 +168,7 @@ const Feed=()=>{
                      <br/>
                      <span>City: {val.city} </span>
                      <br/>
-                     <button className="btn btn-primary" value={val.name} onClick={selected}>Book</button>
+                     <button className="btn btn-primary" value={val.name}  onClick={selected}>Book</button>
                      
             
            

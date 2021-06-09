@@ -68,7 +68,7 @@ exports.notify = async (req,res) =>{
                   err:"Not found", 
               })
           }
-          console.log(data)
+          // console.log(data)
           res.json(data);
       })
 

@@ -64,8 +64,11 @@ function App() {
     <UserContext.Provider value={{ userData, setUserData }}>
       <Navbar />
       <Switch>
-      <Route path="/" exact component={ Login} /> 
-      <Route path="/Feed" exact component={ Feed} /> 
+      <Route path="/" exact component={ Login} />
+      {(userData.user) ?
+       <Route path="/Feed" exact component={ Feed} /> 
+       :<div></div>} 
+      
        <Route path="/Signup" exact component={ Signup} /> 
        {(userData.user) ?
        <Route path="/Chat" exact component={Chat} />
