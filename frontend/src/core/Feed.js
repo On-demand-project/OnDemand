@@ -44,7 +44,7 @@ const Feed=()=>{
 				setChat([ ...chat, { to,from, message } ])
 			})
          var data={
-				username:"newserv"
+				UserName:"newserv"
 			}
 			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()

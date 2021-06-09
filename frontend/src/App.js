@@ -67,7 +67,10 @@ function App() {
       <Route path="/" exact component={ Login} /> 
       <Route path="/Feed" exact component={ Feed} /> 
        <Route path="/Signup" exact component={ Signup} /> 
+       {(userData.user) ?
        <Route path="/Chat" exact component={Chat} />
+       :<div></div>}
+       
         <Route path="/About" exact component={About} />
         <Route path="/Contact" exact component={ Contact} /> 
         <Route path="/Post" exact component={Post} />

@@ -4,22 +4,25 @@ import io from "socket.io-client"
 import UserContext from "./../api/context"
 import axios from 'axios'
 
+var arr=[];
+var user1="";
 function Chat() {
 	const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
 	const { userData, setUserData } = useContext(UserContext);
 	const socketRef = useRef()
 	var data;
-	var to1;
-	var to;
-	var from;
-	var user="";
+
+	
+
+	
+
 	useEffect(
 		() => {
 
-			if(userData.user){
-				// data=userData.user
-				user=userData.user.UserName
+			console.log(userData.user)
+				data=userData.user
+				user1=userData.user.UserName
 				const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
 				.then((res)=>{
 				  console.log(res.data[0].notification);
@@ -27,25 +30,25 @@ function Chat() {
 					console.log("No notification")
 				  }
 				  else{
-				    to1=res.data[0].notification[0];
+					arr=[... res.data[0].notification];
 				  }
 				  
 				})
 				.catch(e=>console.log(e));
 				
-			  }
+		
+		
+				setState({ ...state, from: user1  })
+				setState({ ...state, to: arr[0]  })
 			  socketRef.current = io.connect("http://localhost:8000")
 			  socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
 			})
-			var data={
-				UserName:"New"
-			}
-			// if(userData.user){
-			setState({ ...state, from: user  })
+		
+			
 			socketRef.current.emit("new",data);
 			return () => socketRef.current.disconnect()
-			// }
+		
 
 			
 		},
@@ -61,9 +64,13 @@ function Chat() {
 
 	const onMessageSubmit = (e) => {
 		const {  message } = state
-		//const to="newserv";
-		console.log(state)
-		const from=state.from;
+		const from=user1;
+		const to=arr[0];
+		// setState({ ...state, from: user1  })
+		// setState({ ...state, to: arr[0]  })
+		// console.log(to);
+		// console.log(from);
+		// console.log(state);
 		socketRef.current.emit("message", { to,from, message })
 		e.preventDefault()
 		setState({ message: "", to,from })
