@@ -22,7 +22,7 @@ router.delete('/:sid',deleteserv);
 router.post("/register", register);
 router.post("/login", login);
 router.post("/notify",notify); 
-router.post("/checknotf",checknotf);
+router.get("/checknotf/:uid",checknotf);
 
 
 

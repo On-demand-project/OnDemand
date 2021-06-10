@@ -11,17 +11,15 @@ function Chat() {
 	const [ chat, setChat ] = useState([])
 	const { userData, setUserData } = useContext(UserContext);
 	const socketRef = useRef()
-	var data;
-
 	
 
 	
 
-	useEffect(
-		() => {
+	
 
-			console.log(userData.user)
-				data=userData.user
+	useEffect(() => {
+				console.log(userData.user)
+				const data=userData.user
 				user1=userData.user.UserName
 				const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
 				.then((res)=>{
@@ -40,17 +38,14 @@ function Chat() {
 		
 				setState({ ...state, from: user1  })
 				setState({ ...state, to: arr[0]  })
-			  socketRef.current = io.connect("http://localhost:8000")
-			  socketRef.current.on("message", ({ to,from, message }) => {
+			  	socketRef.current = io.connect("http://localhost:8000")
+			  	socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
-			})
+				})
 		
-			
-			socketRef.current.emit("new",data);
-			return () => socketRef.current.disconnect()
-		
-
-			
+				socketRef.current.emit("new",data);
+				// return () => socketRef.current.disconnect()
+	
 		},
 		[ chat ]
 	)
@@ -61,6 +56,7 @@ function Chat() {
 	const onTextChange = (e) => {
 		setState({ ...state, [e.target.name]: e.target.value })
 	}
+
 
 	const onMessageSubmit = (e) => {
 		const {  message } = state
@@ -76,6 +72,7 @@ function Chat() {
 		setState({ message: "", to,from })
 	}
 
+	
 	const renderChat = () => {
 		return chat.map(({ from, message }, index) => (
 			<div key={index}>

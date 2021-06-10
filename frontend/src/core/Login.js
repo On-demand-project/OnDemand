@@ -55,7 +55,7 @@ const Login=()=>{
                <div class="carousel-item active" >
                   
                   <div class="wrapper" >
-                  <form onSubmit={submit}>
+                  <form onSubmit={submit} action="/">
                      <h3>Login</h3>
                      <div class="mb-3">
                        <label for="exampleInputEmail1" class="form-label">Email address</label>

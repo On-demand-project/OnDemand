@@ -31,9 +31,10 @@ const Navbar = () =>{
     console.log(err);
   }
   console.log("-------------------------------")
-   if(!res && userData.user){
-    // console.log(userData)
-    const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+  // console.log(popoverOpen);
+  // console.log();
+   if(res1 && userData.user && !notOpen ){
+    const res = axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
     .then((res)=>{
       console.log(res.data[0].notification);
       if(res.length===0){

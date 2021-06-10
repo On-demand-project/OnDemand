@@ -60,7 +60,7 @@ exports.notify = async (req,res) =>{
   try{
       console.log(req.body.UserName)
    
-      User.update({UserName:req.body.UserName},{$addToSet:{notification : req.body.curuser.UserName}})
+      User.updateOne({UserName:req.body.UserName},{$addToSet:{notification : req.body.curuser.UserName}})
       .exec((err,data)=>{
           console.log(err); 
           if(err || !data){
@@ -85,8 +85,8 @@ exports.notify = async (req,res) =>{
 
 exports.checknotf = async (req,res) =>{
   try{
-      console.log(req.body.UserName);
-      User.find({UserName:req.body.UserName})
+      console.log(req.params.uid);
+      User.find({_id:req.params.uid})
       .exec((err,data)=>{
           console.log(err); 
           if(err || !data){
@@ -94,7 +94,7 @@ exports.checknotf = async (req,res) =>{
                   err:"Not found", 
               })
           }
-          //console.log(data)
+          console.log(data)
           res.json(data);
       })
   }

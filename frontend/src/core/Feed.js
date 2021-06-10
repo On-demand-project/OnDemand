@@ -10,7 +10,7 @@ const Feed=()=>{
    const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
    const [providerList,setproviderList]=useState([]);
-
+   var res=false;
    useEffect(()=>{
       axios.get('http://localhost:8000/home/service').then((response)=>{
          setproviderList(response.data);
@@ -20,6 +20,8 @@ const Feed=()=>{
    const selected=(event)=>{
       console.log(event.target.value);
       name=event.target.value;
+      // console.log(res);
+      // res=true;
       // setState({... state, to:event.target.value})
       // setState({... state, from:userData.user.UserName})
       console.log(state);
@@ -100,31 +102,33 @@ const Feed=()=>{
 
     </div>
 
-
-<div className="card">
-			<form onSubmit={onMessageSubmit}>
-				<h1>Messenger</h1>
-				<div className="render-chat">
-				<h1>Chat Log</h1>
-				{renderChat()}
-			</div>
-				{/* <div className="name-field">
-					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-				</div> */}
-				<div>
-					<TextField
-						name="message"
-						onChange={(e) => onTextChange(e)}
-						value={state.message}
-						id="outlined-multiline-static"
-						variant="outlined"
-						label="Message"
-					/>
-				</div>
-				<button>Send Message</button>
-			</form>
-			
-		</div>
+{res?
+   <div className="card">
+   <form onSubmit={onMessageSubmit}>
+      <h1>Messenger</h1>
+      <div className="render-chat">
+      <h1>Chat Log</h1>
+      {renderChat()}
+   </div>
+      {/* <div className="name-field">
+         <TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+      </div> */}
+      <div>
+         <TextField
+            name="message"
+            onChange={(e) => onTextChange(e)}
+            value={state.message}
+            id="outlined-multiline-static"
+            variant="outlined"
+            label="Message"
+         />
+      </div>
+      <button>Send Message</button>
+   </form>
+   
+</div>
+:<div></div>}
+   
 
   
 
