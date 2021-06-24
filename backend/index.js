@@ -41,7 +41,7 @@ app.use(logger);
 app.use('/home', service);
 let users={};
 io.on('connection', socket => {
-  console.log("Socket id------>"+socket.id);
+  console.log("Socket id-------------");
   socket.on('new',(data)=>{
     // console.log(data)
     users[data.UserName] =socket.id;

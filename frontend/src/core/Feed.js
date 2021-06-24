@@ -10,7 +10,7 @@ const Feed=()=>{
    const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
    const [providerList,setproviderList]=useState([]);
-   var res=false;
+   var res=true;
    useEffect(()=>{
       axios.get('http://localhost:8000/home/service').then((response)=>{
          setproviderList(response.data);

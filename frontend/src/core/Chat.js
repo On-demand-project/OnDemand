@@ -21,7 +21,7 @@ function Chat() {
 				console.log(userData.user)
 				const data=userData.user
 				user1=userData.user.UserName
-				const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+				const res = axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
 				.then((res)=>{
 				  console.log(res.data[0].notification);
 				  if(res.length===0){
