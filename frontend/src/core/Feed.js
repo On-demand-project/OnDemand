@@ -10,52 +10,23 @@ const Feed=()=>{
    const { userData, setUserData } = useContext(UserContext);
    const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
-   const [providerList,setproviderList]=useState([]);
-   const alert = useAlert()
+   const [visible,setVisible] = useState("");
+   const [showchat,setshowchat]=useState(false);
 
+   const [providerList,setproviderList]=useState([]);
+   const socketRef = useRef()
+   const alert = useAlert()
    var res=true;
+
+
    useEffect(()=>{
       axios.get('http://localhost:8000/home/service').then((response)=>{
          setproviderList(response.data);
       });
    },[]) 
 
-   const selected=(event)=>{
-      alert.success('You have successfully booked our service! Use chat option to contact him Thank you! ')
 
-      console.log(event.target.value);
-      name=event.target.value;
-      // console.log(res);
-      // res=true;
-      // setState({... state, to:event.target.value})
-      // setState({... state, from:userData.user.UserName})
-      console.log(state);
-     
-      const data={
-         UserName:name,
-         curuser : userData.user
-      }
-      console.log(data);
-      const res = axios.post('http://localhost:8000/home/notify',data)
-      .then((res)=>console.log(res))
-      .catch(e=>console.log(e));
-   }
-
-   
-   const search=(event)=>{
-     console.log(event.target.value)
-     const service = axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
-      .then((res)=>{console.log(res);
-      setproviderList(res.data)})
-      .catch(e=>console.log(e))
-   }
-
-
-   
-
-	const socketRef = useRef()
-
-	useEffect(
+   useEffect(
 		() => {
          const data=userData.user;
          console.log(userData.user);
@@ -69,6 +40,63 @@ const Feed=()=>{
 		},
 		[ chat ]
 	)
+
+
+
+   const selected=(event)=>{
+      alert.success('You have successfully booked our service! Use chat option to contact him Thank you! ')
+      // var flag=true;
+      // setVisible(true)
+      
+      // Feed.render(chatbut, document.getElementById('root'));
+      console.log(event.target.value);
+      name=event.target.value;
+      // console.log(res);
+      // res=true;
+      // setState({... state, to:event.target.value})
+      // setState({... state, from:userData.user.UserName})
+      console.log(state);
+     
+      const data={
+         UserName:name,
+         curuser : userData.user
+      }
+      console.log(data);
+      const res1 = axios.post('http://localhost:8000/home/notify',data)
+      .then((res)=>console.log(res))
+      .catch(e=>console.log(e));
+   }
+
+
+   const finalchat=()=>{
+      setshowchat(true);
+   }
+   const showch=()=>{
+         return         <div> <br/><button className="btn btn-primary" onClick={finalchat}>Chat</button> </div>
+      
+     
+   }
+
+   
+   const search=(event)=>{
+     console.log(event.target.value)
+     const service = axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
+      .then((res)=>{console.log(res);
+            setproviderList(res.data)
+      })
+      .catch(e=>{console.log(e);
+         axios.get('http://localhost:8000/home/service').then((response)=>{
+            setproviderList(response.data);
+         });
+      })
+   }
+
+ 
+   
+
+	
+
+	
 
 	const onTextChange = (e) => {
       
@@ -121,31 +149,8 @@ const Feed=()=>{
     </div>
    
 
-{res?
-//    <div className="card">
-//    <form onSubmit={onMessageSubmit}>
-//       <h1>Messenger</h1>
-//       <div className="render-chat">
-//       <h1>Chat Log</h1>
-//       {renderChat()}
-//    </div>
-//       {/* <div className="name-field">
-//          <TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-//       </div> */}
-//       <div>
-//          <TextField
-//             name="message"
-//             onChange={(e) => onTextChange(e)}
-//             value={state.message}
-//             id="outlined-multiline-static"
-//             variant="outlined"
-//             label="Message"
-//          />
-//       </div>
-//       <button>Send Message</button>
-//    </form>
-   
-// </div>
+{showchat?
+
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -229,9 +234,10 @@ const Feed=()=>{
                      <br/>
                      <span>City: {val.city} </span>
                      <br/>
-                     <button className="btn btn-primary" value={val.name}  onClick={selected}  >Book</button>
+                     <button className="btn btn-primary" value={val.name}  onClick={(event)=>{selected(event); setVisible(val.name)}}  >Book</button>
+                     <span>  {visible===val.name?<div>{showch()} </div>:<div></div>} </span>
                      
-            
+                                
            
                   </div>
                </div>

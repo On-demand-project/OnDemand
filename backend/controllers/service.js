@@ -83,13 +83,12 @@ exports.checknotf = async (req,res) =>{
       console.log(req.params.uid);
       User.find({_id:req.params.uid})
       .exec((err,data)=>{
-          console.log(err); 
           if(err || !data){
               res.status(400).json({
                   err:"Not found", 
               })
           }
-          // console.log(data)
+           console.log(data)
           res.json(data);
       })
   }
