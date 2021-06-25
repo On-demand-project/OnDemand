@@ -84,30 +84,68 @@ function Chat() {
 	}
 
 	return (
-		<div className="card">
-			<form onSubmit={onMessageSubmit}>
-				<h1>Messenger</h1>
-				<div className="render-chat">
-				<h1>Chat Log</h1>
-				{renderChat()}
-			</div>
-				{/* <div className="name-field">
-					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-				</div> */}
-				<div>
-					<TextField
-						name="message"
-						onChange={(e) => onTextChange(e)}
-						value={state.message}
-						id="outlined-multiline-static"
-						variant="outlined"
-						label="Message"
-					/>
-				</div>
-				<button>Send Message</button>
-			</form>
+		// <div className="card">
+		// 	<form onSubmit={onMessageSubmit}>
+		// 		<h1>Messenger</h1>
+		// 		<div className="render-chat">
+		// 		<h1>Chat Log</h1>
+		// 		{renderChat()}
+		// 	</div>
+		// 		{/* <div className="name-field">
+		// 			<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+		// 		</div> */}
+		// 		<div>
+		// 			<TextField
+		// 				name="message"
+		// 				onChange={(e) => onTextChange(e)}
+		// 				value={state.message}
+		// 				id="outlined-multiline-static"
+		// 				variant="outlined"
+		// 				label="Message"
+		// 			/>
+		// 		</div>
+		// 		<button>Send Message</button>
+		// 	</form>
 			
-		</div>
+		// </div>
+		<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-bordered">
+				<form onSubmit={onMessageSubmit}>
+                    <div class="card-header">
+                        <h4 class="card-title"><strong 	>Messenger</strong></h4> 
+                    </div>
+                    <div class="ps-container ps-theme-default ps-active-y ovr" id="chat-content" style={{overflowY: "scroll !important", height:"400px !important"}}>
+                        
+                        <div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."/>
+                            <div class="media-body">
+							{renderChat()}
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="ps-scrollbar-x-rail" style={{left: "0px", bottom: "0px"}}>
+                            <div class="ps-scrollbar-x" tabindex="0" style={{left: "0px", width: "0px"}}></div>
+                        </div>
+                        <div class="ps-scrollbar-y-rail" style={{top: "0px" ,height: "0px",right: "2px"}}>
+                            <div class="ps-scrollbar-y" tabindex="0" style={{top: "0px", height: "2px"}}></div>
+                        </div>
+                    </div>
+                    <div class="publisher bt-1 border-light"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."/> <input class="publisher-input" name="message"
+						            onChange={(e) => onTextChange(e)}
+						            value={state.message}
+						            id="outlined-multiline-static"
+					             	variant="outlined"
+						            label="Message" type="text" placeholder="Write something"/>  <button className="btn btn-success">Send</button>	 </div>
+					</form>
+			    </div>
+				
+            </div>
+        </div>
+    </div>
+</div>
 	)
 }
 

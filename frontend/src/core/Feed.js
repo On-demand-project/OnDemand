@@ -3,6 +3,7 @@ import axios from "axios";
 import UserContext from '../api/context'
 import TextField from "@material-ui/core/TextField"
 import io from "socket.io-client"
+import { useAlert } from 'react-alert'
 
 var name=""
 const Feed=()=>{
@@ -10,14 +11,18 @@ const Feed=()=>{
    const [ state, setState ] = useState({ message: "", to: "" ,from:""})
 	const [ chat, setChat ] = useState([])
    const [providerList,setproviderList]=useState([]);
+   const alert = useAlert()
+
    var res=true;
    useEffect(()=>{
       axios.get('http://localhost:8000/home/service').then((response)=>{
          setproviderList(response.data);
       });
-   },[])
+   },[]) 
 
    const selected=(event)=>{
+      alert.success('You have successfully booked our service! Use chat option to contact him Thank you! ')
+
       console.log(event.target.value);
       name=event.target.value;
       // console.log(res);
@@ -37,7 +42,13 @@ const Feed=()=>{
    }
 
    
-
+   const search=(event)=>{
+     console.log(event.target.value)
+     const service = axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
+      .then((res)=>{console.log(res);
+      setproviderList(res.data)})
+      .catch(e=>console.log(e))
+   }
 
 
    
@@ -94,38 +105,84 @@ const Feed=()=>{
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>Service Providers</h2>
+                        <h2>Demands </h2>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+    <div >
+    <div className="input-group" style={{width: "50%" , margin: "auto" }} >
+  <input type="search" id="search"  onChange={search} className="form-control rounded" placeholder="Search" aria-label="Search"
+     />
+  <button type="button" class="btn btn-outline-primary"    >Search</button>
+</div>
+    </div>
+   
 
 {res?
-   <div className="card">
-   <form onSubmit={onMessageSubmit}>
-      <h1>Messenger</h1>
-      <div className="render-chat">
-      <h1>Chat Log</h1>
-      {renderChat()}
-   </div>
-      {/* <div className="name-field">
-         <TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-      </div> */}
-      <div>
-         <TextField
-            name="message"
-            onChange={(e) => onTextChange(e)}
-            value={state.message}
-            id="outlined-multiline-static"
-            variant="outlined"
-            label="Message"
-         />
-      </div>
-      <button>Send Message</button>
-   </form>
+//    <div className="card">
+//    <form onSubmit={onMessageSubmit}>
+//       <h1>Messenger</h1>
+//       <div className="render-chat">
+//       <h1>Chat Log</h1>
+//       {renderChat()}
+//    </div>
+//       {/* <div className="name-field">
+//          <TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+//       </div> */}
+//       <div>
+//          <TextField
+//             name="message"
+//             onChange={(e) => onTextChange(e)}
+//             value={state.message}
+//             id="outlined-multiline-static"
+//             variant="outlined"
+//             label="Message"
+//          />
+//       </div>
+//       <button>Send Message</button>
+//    </form>
    
+// </div>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-bordered">
+				<form onSubmit={onMessageSubmit}>
+                    <div class="card-header">
+                        <h4 class="card-title"><strong 	>Messenger</strong></h4> 
+                    </div>
+                    <div class="ps-container ps-theme-default ps-active-y ovr" id="chat-content" style={{overflowY: "scroll !important", height:"400px !important"}}>
+                        
+                        <div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."/>
+                            <div class="media-body">
+							{renderChat()}
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="ps-scrollbar-x-rail" style={{left: "0px", bottom: "0px"}}>
+                            <div class="ps-scrollbar-x" tabindex="0" style={{left: "0px", width: "0px"}}></div>
+                        </div>
+                        <div class="ps-scrollbar-y-rail" style={{top: "0px" ,height: "0px",right: "2px"}}>
+                            <div class="ps-scrollbar-y" tabindex="0" style={{top: "0px", height: "2px"}}></div>
+                        </div>
+                    </div>
+                    <div class="publisher bt-1 border-light"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."/> <input class="publisher-input" name="message"
+						            onChange={(e) => onTextChange(e)}
+						            value={state.message}
+						            id="outlined-multiline-static"
+					             	variant="outlined"
+						            label="Message" type="text" placeholder="Write something"/>  <button className="btn btn-success">Send</button>	 </div>
+					</form>
+			    </div>
+				
+            </div>
+        </div>
+    </div>
 </div>
 :<div></div>}
    
@@ -172,7 +229,7 @@ const Feed=()=>{
                      <br/>
                      <span>City: {val.city} </span>
                      <br/>
-                     <button className="btn btn-primary" value={val.name}  onClick={selected}>Book</button>
+                     <button className="btn btn-primary" value={val.name}  onClick={selected}  >Book</button>
                      
             
            

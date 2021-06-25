@@ -65,11 +65,12 @@ function App() {
       <Navbar />
       <Switch>
       <Route path="/" exact component={ Login} />
+      <Route path="/Signup" exact component={ Signup} /> 
       {(userData.user) ?
        <Route path="/Feed" exact component={ Feed} /> 
        :<div></div>} 
       
-       <Route path="/Signup" exact component={ Signup} /> 
+       
        {(userData.user) ?
        <Route path="/Chat" exact component={Chat} />
        :<div></div>}
@@ -78,10 +79,7 @@ function App() {
         <Route path="/Contact" exact component={ Contact} /> 
         <Route path="/Post" exact component={Post} />
         <Route path="/Profile" exact component={Profile} />
-        {/* <Route path="/post" exact component={Postpage} /> */}
-        {/* <Route path="/create/product" exact component={AddProduct} />
-        <Route path="/create/uploadproduct" exact component={Upload} /> */}
-      
+        
         
       </Switch>
       </UserContext.Provider>

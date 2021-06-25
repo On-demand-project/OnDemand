@@ -6,9 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
  
 exports.readserv =  (req,res) =>{
-    // console.log("fgidf");
-    //name : req.user.UserName
-    console.log(req.user)
+   
     Service.find({})
     .exec((err,service)=>{
         console.log(err); 
@@ -17,7 +15,6 @@ exports.readserv =  (req,res) =>{
                 err:"Not found", 
             })
         }
-        // console.log(service)
         res.json(service);
     })
 }; 
@@ -32,7 +29,6 @@ exports.postserv = (req,res)=>{
     .catch(err=>{
         res.json(err)
     })
-    // console.log(req.body);
 }
 
 exports.deleteserv = async (req,res) => {
@@ -68,7 +64,6 @@ exports.notify = async (req,res) =>{
                   err:"Not found", 
               })
           }
-          // console.log(data)
           res.json(data);
       })
 
@@ -104,7 +99,23 @@ exports.checknotf = async (req,res) =>{
 }
 
 
-
+exports.filterserv = async(req,res)=>{
+  try{
+    console.log(req.params.sname)
+    Service.find({work:{ $regex: req.params.sname, $options: 'i' }})
+    .exec((err,service)=>{
+        if(err || !service){
+            res.status(400).json({
+                err:"Error", 
+            })
+        }
+        res.json(service);
+    }) 
+  }
+  catch(err){
+    console.log(err)
+  }
+}
 
 exports.register = async (req, res) => {
     try {

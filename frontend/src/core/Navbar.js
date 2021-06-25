@@ -98,9 +98,6 @@ const Navbar = () =>{
                       <li class="nav-item space">
                        <li> <a href="Post">Post </a> </li>
                       </li>
-                      <li class="nav-item space">
-                       <li> <a href="Chat">Text </a> </li>
-                      </li>
                   </div>
                      
               ):(<div></div>) }
@@ -114,7 +111,7 @@ const Navbar = () =>{
          ) :(<div></div> )}
 
 
-         {userData.user ? (
+       {userData.user ? (
           <div>
           <Button className="btn btn-light user" id="Popover1" type="button">
           <i className="fa fa-user fa-2x"></i>
@@ -123,17 +120,22 @@ const Navbar = () =>{
             <PopoverHeader>{userData.user.type}</PopoverHeader>
             <PopoverBody>Welcome {userData.user.UserName} ! </PopoverBody>
           </Popover>
-        
+          </div>
+          ) :(<div></div> )} 
+
+          {res1 ?(
+            <div>
           <Button className="btn btn-light" id="not" type="button">
           <i class="fa fa-envelope fa-2x"></i>
           </Button>
           <Popover placement="bottom" isOpen={notOpen} target="not" toggle={tog}>
             <PopoverHeader>Notifications</PopoverHeader>
-            <PopoverBody> {`${arr[0]} Will be contacting you soon !`} </PopoverBody>
+            <PopoverBody><a href="Profile"> {arr[0]}</a> will be contacting you soon !</PopoverBody>
           </Popover>
-        </div>
-         
-         ) :(<div></div> )}  
+          <Button className="btn btn-light" type="button" href="Chat"> <i class="fa fa-comment fa-2x"></i>
+          </Button>
+     </div>
+          ) :(<div></div> )}
 
       
         </ul>

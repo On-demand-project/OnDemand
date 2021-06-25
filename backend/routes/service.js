@@ -14,6 +14,7 @@ const{
     login,
     notify,
     checknotf,
+    filterserv,
 } = require('../controllers/service'); 
 
 router.get('/service',readserv);
@@ -23,7 +24,7 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/notify",notify); 
 router.get("/checknotf/:uid",checknotf);
-
+router.get("/service/filter/:sname",filterserv);
 
 
 

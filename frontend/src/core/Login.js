@@ -3,15 +3,16 @@ import Body from './Body'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import UserContext from "../api/context";
+import { useAlert } from 'react-alert'
+
 
 const Login=()=>{
 
   const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    // const [error, setError] = useState();
-    
     const { userData, setUserData } = useContext(UserContext);
     const history = useHistory();
+    const alert = useAlert()
 
     const submit = async (e) => {
         e.preventDefault(); 
@@ -28,6 +29,8 @@ const Login=()=>{
             history.push("/");
         } catch(err) {
           console.log(err.response.data.msg)
+           alert.error('Please Check your Password or Username')
+
             //err.response.data.msg && setError(err.response.data.msg)
         }
         
