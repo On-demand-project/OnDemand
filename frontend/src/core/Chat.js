@@ -21,7 +21,7 @@ function Chat() {
 				console.log(userData.user)
 				const data=userData.user
 				user1=userData.user.UserName
-				 axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
+				 axios.get(`https://ondemand-00.herokuapp.com/home/checknotf/${userData.user.id}`,userData.user)
 				.then((res)=>{
 				  console.log(res.data[0].notification);
 				  if(res.length===0){
@@ -38,7 +38,7 @@ function Chat() {
 		
 				setState({ ...state, from: user1  })
 				setState({ ...state, to: arr[0]  })
-			  	socketRef.current = io.connect("http://localhost:8000")
+			  	socketRef.current = io.connect("https://ondemand-00.herokuapp.com/")
 			  	socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
 				})

@@ -21,8 +21,8 @@ const Signup=()=>{
       try{
           const newUser = {email, password, passwordCheck, UserName, type};
           console.log(newUser);
-          await axios.post("http://localhost:8000/home/register", newUser);
-          const loginResponse = await axios.post("http://localhost:8000/home/login", {
+          await axios.post("https://ondemand-00.herokuapp.com/home/register", newUser);
+          const loginResponse = await axios.post("https://ondemand-00.herokuapp.com/home/login", {
               email, password
           });
           // setUserData({

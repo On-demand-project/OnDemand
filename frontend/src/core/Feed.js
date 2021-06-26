@@ -20,7 +20,7 @@ const Feed=()=>{
 
 
    useEffect(()=>{
-      axios.get('http://localhost:8000/home/service').then((response)=>{
+      axios.get('https://ondemand-00.herokuapp.com/home/service').then((response)=>{
          setproviderList(response.data);
       });
    },[]) 
@@ -30,7 +30,7 @@ const Feed=()=>{
 		() => {
          const data=userData.user;
          console.log(userData.user);
-			socketRef.current = io.connect("http://localhost:8000")
+			socketRef.current = io.connect("https://ondemand-00.herokuapp.com/")
 			socketRef.current.on("message", ({ to,from, message }) => {
 				setChat([ ...chat, { to,from, message } ])
 			})
@@ -62,7 +62,7 @@ const Feed=()=>{
          curuser : userData.user
       }
       console.log(data);
-      const res1 = axios.post('http://localhost:8000/home/notify',data)
+      const res1 = axios.post('https://ondemand-00.herokuapp.com/home/notify',data)
       .then((res)=>console.log(res))
       .catch(e=>console.log(e));
    }
@@ -80,12 +80,12 @@ const Feed=()=>{
    
    const search=(event)=>{
      console.log(event.target.value)
-      axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
+      axios.get(`https://ondemand-00.herokuapp.com/home/service/filter/${event.target.value}`)
       .then((res)=>{console.log(res);
             setproviderList(res.data)
       })
       .catch(e=>{console.log(e);
-         axios.get('http://localhost:8000/home/service').then((response)=>{
+         axios.get('https://ondemand-00.herokuapp.com/home/service').then((response)=>{
             setproviderList(response.data);
          });
       })

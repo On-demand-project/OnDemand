@@ -9,7 +9,7 @@ const Profile=()=>{
 
     var arr=[];
     if( userData.user ){
-        axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
+        axios.get(`https://ondemand-00.herokuapp.com/home/checknotf/${userData.user.id}`,userData.user)
         .then((res)=>{
           console.log(res.data);
           if(res.length===0){

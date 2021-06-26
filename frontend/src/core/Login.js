@@ -20,7 +20,7 @@ const Login=()=>{
         try{
             const loginUser = {email, password};
             console.log(loginUser)
-            const loginResponse = await axios.post("http://localhost:8000/home/login", loginUser);
+            const loginResponse = await axios.post("https://ondemand-00.herokuapp.com/home/login", loginUser);
             setUserData({
                 token: loginResponse.data.token,
                 user: loginResponse.data.user
@@ -37,7 +37,7 @@ const Login=()=>{
 
         if(userData.user){
           console.log(userData)
-           axios.post('http://localhost:8000/home/checknotf',userData.user)
+           axios.post('https://ondemand-00.herokuapp.com/home/checknotf',userData.user)
           .then((res)=>console.log(res))
           .catch(e=>console.log(e));
         }

@@ -32,9 +32,9 @@ function App() {
         token = "";
         console.log(localStorage);
       }
-      const tokenResponse = await axios.post('http://localhost:8000/home/tokenIsValid', null, {headers: {"x-auth-token": token}});
+      const tokenResponse = await axios.post('https://ondemand-00.herokuapp.com/home/tokenIsValid', null, {headers: {"x-auth-token": token}});
       if (tokenResponse.data) {
-        const userRes = await axios.get("http://localhost:8000/home/", {
+        const userRes = await axios.get("https://ondemand-00.herokuapp.com/home/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
