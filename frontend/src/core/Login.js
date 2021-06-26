@@ -1,4 +1,4 @@
-import react,{useState,useContext,createContext} from 'react'
+import {useState,useContext} from 'react'
 import Body from './Body'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
@@ -37,7 +37,7 @@ const Login=()=>{
 
         if(userData.user){
           console.log(userData)
-          const res = axios.post('http://localhost:8000/home/checknotf',userData.user)
+           axios.post('http://localhost:8000/home/checknotf',userData.user)
           .then((res)=>console.log(res))
           .catch(e=>console.log(e));
         }

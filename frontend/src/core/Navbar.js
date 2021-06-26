@@ -1,5 +1,4 @@
-import react,{useState,useContext,createContext, useEffects} from 'react';
-import {Redirect, useHistory} from 'react-router-dom'
+import {useState,useContext} from 'react';
 import UserContext from "../api/context";
 import axios from 'axios'
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
@@ -34,14 +33,14 @@ const Navbar = () =>{
   // console.log(popoverOpen);
   // console.log();
    if(res1 && userData.user && !notOpen ){
-    const res = axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
+     axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
     .then((res)=>{
       console.log(res.data[0].notification);
       if(res.length===0){
         console.log("No notification")
       }
       else{
-       arr=[... res.data[0].notification];
+       arr=[...res.data[0].notification];
       }
     })
     .catch(e=>console.log(e));

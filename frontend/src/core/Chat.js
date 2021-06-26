@@ -1,4 +1,4 @@
-import TextField from "@material-ui/core/TextField"
+// import TextField from "@material-ui/core/TextField"
 import React, { useEffect, useRef, useState,useContext } from "react"
 import io from "socket.io-client"
 import UserContext from "./../api/context"
@@ -21,14 +21,14 @@ function Chat() {
 				console.log(userData.user)
 				const data=userData.user
 				user1=userData.user.UserName
-				const res = axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
+				 axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
 				.then((res)=>{
 				  console.log(res.data[0].notification);
 				  if(res.length===0){
 					console.log("No notification")
 				  }
 				  else{
-					arr=[... res.data[0].notification];
+					arr=[...res.data[0].notification];
 				  }
 				  
 				})

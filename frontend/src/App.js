@@ -1,8 +1,6 @@
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./core/Login";
-import Postpage from "./core/Postpage";
-import Home from "./core/Home";
 import Signup from "./core/signup"
 import Navbar from "./core/Navbar";
 import Contact from "./core/Contact";
@@ -29,8 +27,6 @@ function App() {
   useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
-      //let token=null;
-
       if(token === null){
         localStorage.setItem("auth-token", "");
         token = "";
@@ -46,7 +42,6 @@ function App() {
           user: userRes.data,
          
         });
-        // console.log(userRes.data.type);
       } 
     }
 

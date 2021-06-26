@@ -1,4 +1,4 @@
-import react,{useContext} from 'react'
+import {useContext} from 'react'
 import axios from 'axios'
 import UserContext from './../api/context'
 import { useAlert } from 'react-alert'
@@ -9,14 +9,14 @@ const Profile=()=>{
 
     var arr=[];
     if( userData.user ){
-        const res = axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
+        axios.get(`http://localhost:8000/home/checknotf/${userData.user.id}`,userData.user)
         .then((res)=>{
           console.log(res.data);
           if(res.length===0){
             console.log("No notification")
           }
           else{
-           arr=[... res.data[0].notification];
+           arr=[...res.data[0].notification];
           }
         })
         .catch(e=>console.log(e));

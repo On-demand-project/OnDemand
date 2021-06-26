@@ -1,4 +1,4 @@
-import react, { Component } from 'react'
+import  { Component } from 'react'
 import * as emailjs from 'emailjs-com'
 import { Redirect } from 'react-router'
 
@@ -13,7 +13,7 @@ class Contact extends Component {
   handleSubmit(e) {
       e.preventDefault()
 
-      const { name, email, phone, message } = this.state
+      const {  email, message } = this.state
 
       let templateParams = {
         from_name: email,

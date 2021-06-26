@@ -1,4 +1,4 @@
-import react from 'react';
+// import react from 'react';
 
 
 const About = () =>{
@@ -23,7 +23,7 @@ const About = () =>{
       <div class="row">
          <dir class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
             <div class="about_box">
-               <figure><img src="assets/images/pc_layout.png"/></figure>
+               <figure><img src="assets/images/pc_layout.png" alt="/"/></figure>
             </div>
          </dir>
           <dir class="col-xl-6 col-lg-6 col-md-12 col-sm-12">

@@ -1,4 +1,4 @@
-import react from 'react'
+// import react from 'react'
 
 const Footer=()=>{
 return(<footr>
@@ -18,8 +18,8 @@ return(<footr>
                      <h3>ADDITIONAL LINKS</h3>
                      <ul class="lik">
                          <li> <a href="About">About us</a></li>
-                         <li> <a href="#">Terms and conditions</a></li>
-                         <li> <a href="#">Privacy policy</a></li>
+                         <li> <a href="Body">Terms and conditions</a></li>
+                         <li> <a href="Body">Privacy policy</a></li>
                           <li> <a href="Contact">Contact us</a></li>
                      </ul>
                   </div>

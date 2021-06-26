@@ -1,4 +1,4 @@
-import react from 'react'
+// import react from 'react'
 
 const Body=()=>{
     return (
@@ -24,28 +24,28 @@ const Body=()=>{
             <div class="row">
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="assets/icon/1.jpg"/></i>
+                     <i><img src="assets/icon/1.jpg" alt="/"/></i>
                      <h3>House Cleaning</h3>
                      <p>We have well equipped and trained team,who carries out Deep house cleaning and sanitization with Non-Hazardous chemicals.</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="assets/icon/2.jpg"/></i>
+                     <i><img src="assets/icon/2.jpg" alt="/"/></i>
                      <h3>Painting</h3>
                      <p>We have enthusiastic and professional painters who complete and deliver your projects on time always.</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="assets/icon/3.jpg"/></i>
+                     <i><img src="assets/icon/3.jpg" alt="/"/></i>
                      <h3>Laundry</h3>
                      <p>We have best Laundry facilities and Experts who are trained to handle sensitive, expensive fabric.</p>
                   </div>
                </dir>
                <dir class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="for_box">
-                     <i><img src="assets/icon/4.jpg"/></i>
+                     <i><img src="assets/icon/4.jpg" alt="/"/></i>
                      <h3>Deivery</h3>
                      <p>We deliver the Packages from one end of the city to the other and also we deliver you the orders from local stores within some minutes.</p>
                   </div>
@@ -71,7 +71,7 @@ const Body=()=>{
             <div class="row">
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="assets/icon/service1.png"/></i>
+                     <i><img src="assets/icon/service1.png" alt="/"/></i>
                      <h3>Fast service</h3>
                      <p>Expert service providers to provide you with the fastest service.</p>
                   </div>
@@ -79,14 +79,14 @@ const Body=()=>{
                
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="assets/icon/service3.png"/></i>
+                     <i><img src="assets/icon/service3.png" alt="/"/></i>
                      <h3>Expert team</h3>
                      <p>Well trained team with expertisation in respective field.</p>
                   </div>
                </div>
                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="service-box">
-                     <i><img src="assets/icon/service4.png"/></i>
+                     <i><img src="assets/icon/service4.png" alt="/"/></i>
                      <h3>Affordable services</h3>
                      <p>100 percent work completion with low price economy.</p>
                   </div>
@@ -110,7 +110,7 @@ const Body=()=>{
                </div>
             </div>
              
-               <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
+               {/* <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#client_slider" data-slide-to="0" class="active"></li>
           <li data-target="#client_slider" data-slide-to="1"></li>
@@ -159,7 +159,7 @@ const Body=()=>{
           </div>
         </div>
         
-      </div>
+      </div> */}
 
             </div>
          </div>

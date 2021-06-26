@@ -1,5 +1,5 @@
-import react,{ useState,useContext,useRef,use } from 'react'
-import axios from 'axios'
+import { useState,useContext } from 'react'
+// import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import { create } from '../api/api';
 import UserContext from "../api/context";
@@ -20,7 +20,7 @@ const Post=()=>{
     // const form = useRef(null)
     const {userData,setUserData} =  useContext(UserContext);
     console.log(userData.user);
-    const {name,address,phone,city,pin,price,work,date,time} = data;
+    // const {name,address,phone,city,pin,price,work,date,time} = data;
     const handleChange=(event)=>{
      // console.log()
       const value = event.target.value;
@@ -68,8 +68,8 @@ const Post=()=>{
  
          <div className="col-md-3">
             <label for="validationCustom01" className="form-label">Demand</label>
-              <input type="text"   name="address" 
-              required className="form-control" id="type" onChange={handleChange} name="work" placeholder="Demand" required />
+              <input type="text"   
+               className="form-control" id="type" onChange={handleChange} name="work" placeholder="Demand" required />
   
           </div>
   <div className="col-md-3">

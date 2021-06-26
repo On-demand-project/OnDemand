@@ -1,7 +1,7 @@
-import react,{Component,useEffect,useState,useContext,useRef} from 'react'
+import {useEffect,useState,useContext,useRef} from 'react'
 import axios from "axios";
 import UserContext from '../api/context'
-import TextField from "@material-ui/core/TextField"
+// import TextField from "@material-ui/core/TextField"
 import io from "socket.io-client"
 import { useAlert } from 'react-alert'
 
@@ -80,7 +80,7 @@ const Feed=()=>{
    
    const search=(event)=>{
      console.log(event.target.value)
-     const service = axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
+      axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
       .then((res)=>{console.log(res);
             setproviderList(res.data)
       })
@@ -218,7 +218,7 @@ const Feed=()=>{
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="product-box">
-                     <i><img src="assets/icon/p1.jpg"/></i>
+                     <i><img src="assets/icon/p1.jpg" alt="/"/></i>
                      <br/>
                      <h2>{val.work.toUpperCase()} </h2>
                      <h3>$ {val.price} </h3>
