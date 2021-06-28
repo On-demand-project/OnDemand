@@ -4,7 +4,6 @@ import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 
 const Signup=()=>{
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordCheck, setPasswordCheck] = useState();
@@ -14,13 +13,11 @@ const Signup=()=>{
 
   // const { setUserData } = useContext(createContext(null));
   const history = useHistory();
-
   const submit = async (e) => {
       e.preventDefault();
-
       try{
           const newUser = {email, password, passwordCheck, UserName, type};
-          console.log(newUser);
+          //console.log(newUser);
           await axios.post("https://ondemand-00.herokuapp.com/home/register", newUser);
           const loginResponse = await axios.post("https://ondemand-00.herokuapp.com/home/login", {
               email, password

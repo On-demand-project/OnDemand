@@ -12,18 +12,13 @@ function Chat() {
 	const { userData, setUserData } = useContext(UserContext);
 	const socketRef = useRef()
 	
-
-	
-
-	
-
 	useEffect(() => {
 				console.log(userData.user)
 				const data=userData.user
 				user1=userData.user.UserName
 				 axios.get(`https://ondemand-00.herokuapp.com/home/checknotf/${userData.user.id}`,userData.user)
 				.then((res)=>{
-				  console.log(res.data[0].notification);
+				  //console.log(res.data[0].notification);
 				  if(res.length===0){
 					console.log("No notification")
 				  }
@@ -34,8 +29,6 @@ function Chat() {
 				})
 				.catch(e=>console.log(e));
 				
-		
-		
 				setState({ ...state, from: user1  })
 				setState({ ...state, to: arr[0]  })
 			  	socketRef.current = io.connect("https://ondemand-00.herokuapp.com/")
@@ -84,30 +77,7 @@ function Chat() {
 	}
 
 	return (
-		// <div className="card">
-		// 	<form onSubmit={onMessageSubmit}>
-		// 		<h1>Messenger</h1>
-		// 		<div className="render-chat">
-		// 		<h1>Chat Log</h1>
-		// 		{renderChat()}
-		// 	</div>
-		// 		{/* <div className="name-field">
-		// 			<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-		// 		</div> */}
-		// 		<div>
-		// 			<TextField
-		// 				name="message"
-		// 				onChange={(e) => onTextChange(e)}
-		// 				value={state.message}
-		// 				id="outlined-multiline-static"
-		// 				variant="outlined"
-		// 				label="Message"
-		// 			/>
-		// 		</div>
-		// 		<button>Send Message</button>
-		// 	</form>
-			
-		// </div>
+
 		<div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
