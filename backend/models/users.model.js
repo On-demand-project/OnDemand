@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   UserName: { type: String },
   type : { type:String},
   notification : { type: Array },
+  schedules : { type: Array },
 });
 
 module.exports = User = mongoose.model("user", userSchema);

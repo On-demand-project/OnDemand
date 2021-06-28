@@ -12,12 +12,10 @@ const Feed=()=>{
 	const [ chat, setChat ] = useState([])
    const [visible,setVisible] = useState("");
    const [showchat,setshowchat]=useState(false);
-
    const [providerList,setproviderList]=useState([]);
    const socketRef = useRef()
    const alert = useAlert()
    var res=true;
-
 
    useEffect(()=>{
       axios.get('http://localhost:8000/home/service').then((response)=>{
@@ -42,7 +40,6 @@ const Feed=()=>{
 	)
 
 
-
    const selected=(event)=>{
       alert.success('You have successfully booked our service! Use chat option to contact him Thank you! ')
       // var flag=true;
@@ -50,19 +47,20 @@ const Feed=()=>{
       
       // Feed.render(chatbut, document.getElementById('root'));
       console.log(event.target.value);
+      console.log(event.target.answer);
       name=event.target.value;
-      // console.log(res);
+      console.log(res);
       // res=true;
       // setState({... state, to:event.target.value})
       // setState({... state, from:userData.user.UserName})
-      console.log(state);
+      //console.log(state);
      
       const data={
          UserName:name,
          curuser : userData.user
       }
       console.log(data);
-      const res1 = axios.post('http://localhost:8000/home/notify',data)
+       axios.post('http://localhost:8000/home/notify',data)
       .then((res)=>console.log(res))
       .catch(e=>console.log(e));
    }
@@ -73,13 +71,11 @@ const Feed=()=>{
    }
    const showch=()=>{
          return         <div> <br/><button className="btn btn-primary" onClick={finalchat}>Chat</button> </div>
-      
-     
    }
 
    
    const search=(event)=>{
-     console.log(event.target.value)
+     //console.log(event.target.value)
       axios.get(`http://localhost:8000/home/service/filter/${event.target.value}`)
       .then((res)=>{console.log(res);
             setproviderList(res.data)
@@ -91,7 +87,12 @@ const Feed=()=>{
       })
    }
 
- 
+   const dele=(id)=>{
+      console.log(id);
+      axios.delete(`http://localhost:8000/home/${id}`)
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
+   }
    
 
 	
@@ -193,7 +194,7 @@ const Feed=()=>{
                      <br/>
                      <span>City: {val.city} </span>
                      <br/>
-                     <button className="btn btn-primary" value={val.name}  onClick={(event)=>{selected(event); setVisible(val.name)}}  >Book</button>
+                     <button className="btn btn-primary" value={val.name} answer={val._id} onClick={(event)=>{selected(event); setVisible(val.name); dele(val._id)}}  >Book</button>
                      <span>  {visible===val.name?<div>{showch()} </div>:<div></div>} </span>
                      
                                 

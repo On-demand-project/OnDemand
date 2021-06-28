@@ -8,28 +8,23 @@ const Navbar = () =>{
   // const [ar,setar] = useState({});
   const [popoverOpen, setPopoverOpen] = useState(false);
   const toggle = () => setPopoverOpen(!popoverOpen);
-
   const [notOpen, setnotOpen] = useState(false);
   const tog = () => setnotOpen(!notOpen);
-
-
   var res=false;
   var res1=false;
   
-   const { userData, setUserData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
    //console.log(userData.user)
 
   try{
     if(userData.user.type === 'Service provider')
       res=true;
      if(userData.user.type === 'User')
-      res1=true;
-    
+      res1=true; 
   }
   catch(err){
     console.log(err);
   }
-  console.log("-------------------------------")
   // console.log(popoverOpen);
   // console.log();
    if(res1 && userData.user && !notOpen ){
@@ -58,52 +53,42 @@ const Navbar = () =>{
       localStorage.setItem("auth-token","");
       };
     return (
-    
-      
-   
         <div>
-        <body>
-        
-      
+          <body>
+            <nav class="navbar sticky-top navbar-expand-lg nav" style={{backgroundColor: "white"}}>
+              <div class="container">
+                <div className="center-desk">
+                  <div className="logo"> <a href="/"><img src="assets/images/logo.jfif" alt="logo"/></a> </div>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+                </button>
 
-   <nav class="navbar sticky-top navbar-expand-lg nav" style={{backgroundColor: "white"}}>
-    <div class="container">
-    <div className="center-desk">
-         <div className="logo"> <a href="/"><img src="assets/images/logo.jfif" alt="logo"/></a> </div>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-   <i class="fa fa-bars"></i>
-  </button>
-
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto w-100 justify-content-end">
-          <li class="nav-item active space">
-          <a href="/">Home </a> 
-          </li>
-          <li class="nav-item space">
-           <a href="About">About </a> 
-            </li>
-            <li class="nav-item space">
-             <a href="Contact">Contact </a> 
-              </li>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                  <li class="nav-item active space">
+                    <a href="/">Home </a> 
+                  </li>
+                  <li class="nav-item space">
+                    <a href="About">About </a> 
+                  </li>
+                  <li class="nav-item space">
+                    <a href="Contact">Contact </a> 
+                  </li>
               {/* .type == 'Service Provider' */}
-             {(res) ?(
-                 <li class="nav-item space">
-                     <li> <a href="Feed">Browse </a> </li>
-                     </li>
-              ):(<div></div>) }
-               {res1 ?(
-                 <div>
+                {(res) ?(
+                   <li class="nav-item space">
+                     <a href="Feed">Browse </a>
+                   </li>
+                  ):(<div></div>) }
+                {res1 ?(
+                   <div>
                       <li class="nav-item space">
-                       <li> <a href="Post">Post </a> </li>
+                        <a href="Post">Post </a> 
                       </li>
-                  </div>
-                     
-              ):(<div></div>) }
-               
-              
-          
-                     
+                  </div>   
+                  ):(<div></div>) }
+                 
          {userData.user ? (
          <button className="btn btn-danger logout"onClick={logout}>Logout</button>
          

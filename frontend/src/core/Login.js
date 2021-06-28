@@ -16,10 +16,10 @@ const Login=()=>{
 
     const submit = async (e) => {
         e.preventDefault(); 
-        console.log(setUserData)
+        //console.log(setUserData)
         try{
             const loginUser = {email, password};
-            console.log(loginUser)
+            //console.log(loginUser)
             const loginResponse = await axios.post("http://localhost:8000/home/login", loginUser);
             setUserData({
                 token: loginResponse.data.token,
@@ -36,7 +36,7 @@ const Login=()=>{
         
 
         if(userData.user){
-          console.log(userData)
+          //console.log(userData)
            axios.post('http://localhost:8000/home/checknotf',userData.user)
           .then((res)=>console.log(res))
           .catch(e=>console.log(e));

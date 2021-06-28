@@ -42,7 +42,7 @@ exports.deleteserv = async (req,res) => {
             });
         }
         if(data){
-        return res.status(500).json({
+        return res.json({
             message: 'Service served. Thank You !!',
         });
     }
@@ -54,7 +54,7 @@ exports.deleteserv = async (req,res) => {
 
 exports.notify = async (req,res) =>{
   try{
-      console.log(req.body.UserName)
+      //console.log(req.body.curuser.UserName)
    
       User.updateOne({UserName:req.body.UserName},{$addToSet:{notification : req.body.curuser.UserName}})
       .exec((err,data)=>{
@@ -67,7 +67,27 @@ exports.notify = async (req,res) =>{
           res.json(data);
       })
 
+      // User.updateOne({UserName:req.body.curuser.UserName},{$addToSet:{schedules : req.body.curuser.UserName}})
+      // .exec((err,data)=>{
+      //     console.log(err); 
+      //     if(err || !data){
+      //         res.status(400).json({
+      //             err:"Not found", 
+      //         })
+      //     }
+      //     res.json(data);
+      // })
 
+      // User.updateOne({UserName:req.body.UserName},{$addToSet:{schedules : req.body.curuser.UserName}})
+      // .exec((err,data)=>{
+      //     console.log(err); 
+      //     if(err || !data){
+      //         res.status(400).json({
+      //             err:"Not found", 
+      //         })
+      //     }
+      //     res.json(data);
+      // })
     
       
       
@@ -80,7 +100,7 @@ exports.notify = async (req,res) =>{
 
 exports.checknotf = async (req,res) =>{
   try{
-      console.log(req.params.uid);
+      //console.log(req.params.uid);
       User.find({_id:req.params.uid})
       .exec((err,data)=>{
           if(err || !data){
@@ -88,7 +108,7 @@ exports.checknotf = async (req,res) =>{
                   err:"Not found", 
               })
           }
-           console.log(data)
+           //console.log(data)
           res.json(data);
       })
   }
@@ -100,7 +120,7 @@ exports.checknotf = async (req,res) =>{
 
 exports.filterserv = async(req,res)=>{
   try{
-    console.log(req.params.sname)
+    //console.log(req.params.sname)
     Service.find({work:{ $regex: req.params.sname, $options: 'i' }})
     .exec((err,service)=>{
         if(err || !service){
@@ -161,7 +181,7 @@ exports.register = async (req, res) => {
   exports.login =async (req, res) => {
     try {
       const { email, password } = req.body;
-      console.log(req.body)
+      //console.log(req.body)
       // validate 
       if (!email || !password)
         return res.status(400).json({ msg: "Not all fields have been entered." });
@@ -176,7 +196,7 @@ exports.register = async (req, res) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
   
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET );
-      console.log("token",token);
+      //console.log("token",token);
       res.json({
         token,
         user: {
